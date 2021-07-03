@@ -12,7 +12,7 @@ export default function Header({children}: {children: any}) {
           <a><ImHome/></a>
         </Link>
       </nav>}
-      <>{children}</>
+      <div className={styles.children}>{children}</div>
       {router.route === "/" && <nav>
         <Link href='/countries'>
           <a><ImEarth/></a>

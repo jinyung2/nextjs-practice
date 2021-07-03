@@ -1,0 +1,51 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Nunito,serif;
+  font-weight: 100;
+  font-size: 6rem;
+}
+
+.stairs {
+  display: grid;
+  height: 75%;
+  width: 75vh;
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 0;
+}
+
+.stairs div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: inherit;
+  transition: all 1.2s ease;
+}
+
+.stairs div:hover {
+  transform: rotateY(360deg)
+}
+
+.stairs div:nth-child(4n + 10),
+.stairs div:nth-child(4n + 15),
+.stairs div:nth-child(4n + 20),
+.stairs div:last-child
+{
+  background-color: rgb(196, 196, 196);
+}
+
+
+
+.white {
+  color: white;
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    /* height: 90vh; */
+    font-size: 4.5rem;
+  }
+}
