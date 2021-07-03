@@ -21,8 +21,7 @@ export default function CountriesPage({countries} : {countries: CountryData[]}) 
       {/* add the input and table here */}
       <label htmlFor="country">Country</label>
       <input type="search" id="country" onChange={countryChangeHandler} />
-      <p>{filtered}</p>
-      <CountriesTable />
+      <CountriesTable countries={countries.filter((country: CountryData) => country.name.startsWith(filtered))}/>
     </Layout>
   )
 }
