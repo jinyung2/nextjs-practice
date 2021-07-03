@@ -58,4 +58,8 @@
     min-height: 50px;
     height: auto;
   }
+
+  .children {
+    height: 100%;
+  }
 }
