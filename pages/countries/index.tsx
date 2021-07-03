@@ -28,7 +28,7 @@ export default function CountriesPage({countries} : {countries: CountryDataTypes
 export const getServerSideProps: GetServerSideProps = async (context) =>  {
   const countries = await (await fetch("https://restcountries.eu/rest/v2/all?fields=name;capital;region;population")).json();
   // one country named Åland Islands, that starts with the Angstrom character... messes with my filter so changing into regular A
-  countries[1].name = 'Aland Island';
+  countries[1].name = 'Aland Islands';
   return {
     props: {countries}
   }
