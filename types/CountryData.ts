@@ -1,3 +1,6 @@
 export type CountryData = {
-  name: string
+  capital: string,
+  name: string,
+  population: number,
+  region: string  
 }
