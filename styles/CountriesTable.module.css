@@ -5,10 +5,26 @@
 .table-container table {
   padding: 0 20px;
   width: 80%;
+  margin: 0 auto;
+}
+
+.table-container * {
+  padding: 10px 20px;
+  border-top: 1px solid black;
+}
+
+.table-container tr:nth-child(2n) {
+  background-color: var(--color-main);
 }
 
 @media only screen and (max-width: 600px){
   .table-container table {
     width: 100%;
+    font-size: 0.8rem;
+    padding: 0;
+  }
+
+  .table-container * {
+    padding: 10px 5px;
   }
 }

@@ -34,7 +34,7 @@
 .stairs div:nth-child(4n + 20),
 .stairs div:last-child
 {
-  background-color: rgb(196, 196, 196);
+  background-color: var(--color-main);
 }
 
 .white {
