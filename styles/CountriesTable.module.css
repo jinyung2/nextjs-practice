@@ -17,6 +17,14 @@
   background-color: var(--color-main);
 }
 
+.table-container tbody tr {
+  transition: all 0.3s ease-in-out;
+}
+
+.table-container tbody tr:hover {
+  transform: translateX(8px) ;
+}
+
 @media only screen and (max-width: 600px){
   .table-container table {
     width: 100%;
