@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className={styles.container}>
       <Image src="/pusheen-laptop.png" height="200" width="300"/>
-      <div>Hmm... Couldn't find anything. Try Again?</div> 
+      <div>Hmm... Could not find anything. Try Again?</div> 
     </div>
   )
 }
