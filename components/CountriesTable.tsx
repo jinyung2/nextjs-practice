@@ -1,5 +1,6 @@
 import { CountryDataTypes } from "types/CountryData";
 import styles from '@styles/CountriesTable.module.css';
+import NotFound from "./NotFound";
 
 export default function CountriesTable({countries}: {countries: CountryDataTypes[]}) {
 
@@ -37,7 +38,7 @@ export default function CountriesTable({countries}: {countries: CountryDataTypes
       <table>
         <TableHeader />
         <TableBody />
-      </table> : <h1>NO COUNTRY PLACEHOLDER</h1>}
+      </table> : <NotFound />}
     </div>
   )
 }

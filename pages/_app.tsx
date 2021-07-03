@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     anim: {
       opacity: 1,
       transition: {
-        delay: 0.5
+        duration: 0.6
       }
     }
   }}>

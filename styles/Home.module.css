@@ -10,14 +10,14 @@
 
 .stairs {
   display: grid;
-  height: 75%;
-  width: 75vh;
+  height: 80%;
+  width: 80vh;
   grid-template-columns: repeat(5, 1fr);
-
   gap: 0;
 }
 
 .stairs div {
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,5 +45,10 @@
   .container {
     height: 100%;
     font-size: 4.5rem;
+  }
+
+  .stairs {
+    height: 50%;
+  width: 50vh;
   }
 }
