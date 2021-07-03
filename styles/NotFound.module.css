@@ -9,7 +9,7 @@
   border: none;
 }
 
-.container h1 {
+.container * {
   border: none;
 }
 

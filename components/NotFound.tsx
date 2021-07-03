@@ -1,10 +1,11 @@
 import styles from '@styles//NotFound.module.css';
+import Image from 'next/image';
 
 export default function NotFound() {
   return (
     <div className={styles.container}>
-      <h1>🤔</h1>   
-      Hmm... Couldn't find anything. Try Again? 
+      <Image src="/pusheen-laptop.png" height="200" width="300"/>
+      <div>Hmm... Couldn't find anything. Try Again?</div> 
     </div>
   )
 }
