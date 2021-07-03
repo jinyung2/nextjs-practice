@@ -1,4 +1,5 @@
 import { CountryDataTypes } from "types/CountryData";
+import styles from '@styles/CountriesTable.module.css';
 
 export default function CountriesTable({countries}: {countries: CountryDataTypes[]}) {
 
@@ -20,10 +21,10 @@ export default function CountriesTable({countries}: {countries: CountryDataTypes
     <tbody>
           {countries.map((country: CountryDataTypes) =>
           <tr key={country.name}>
-            <th>{country.name}</th>
-            <th>{country.capital}</th>
-            <th>{country.region}</th>
-            <th>{country.population}</th>
+            <td>{country.name}</td>
+            <td>{country.capital}</td>
+            <td>{country.region}</td>
+            <td>{country.population}</td>
           </tr>
           )}
     </tbody>
@@ -31,7 +32,7 @@ export default function CountriesTable({countries}: {countries: CountryDataTypes
   }
   
   return (
-    <div>
+    <div className={styles['table-container']}>
       {countries.length ? 
       <table>
         <TableHeader />
