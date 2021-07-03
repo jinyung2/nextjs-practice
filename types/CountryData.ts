@@ -1,4 +1,4 @@
-export type CountryData = {
+export type CountryDataTypes = {
   capital: string,
   name: string,
   population: number,

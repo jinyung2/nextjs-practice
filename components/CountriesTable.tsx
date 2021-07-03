@@ -1,8 +1,6 @@
-import { CountryData } from "types/CountryData";
+import { CountryDataTypes } from "types/CountryData";
 
-
-
-export default function CountriesTable({countries}: {countries: CountryData[]}) {
+export default function CountriesTable({countries}: {countries: CountryDataTypes[]}) {
 
   const TableHeader = () => {
     return (
@@ -20,8 +18,8 @@ export default function CountriesTable({countries}: {countries: CountryData[]}) 
   const TableBody = () => {
     return (
     <tbody>
-          {countries.map((country: CountryData) =>
-          <tr>
+          {countries.map((country: CountryDataTypes) =>
+          <tr key={country.name}>
             <th>{country.name}</th>
             <th>{country.capital}</th>
             <th>{country.region}</th>
@@ -34,8 +32,11 @@ export default function CountriesTable({countries}: {countries: CountryData[]}) 
   
   return (
     <div>
-      {countries.length ? <TableHeader /> : <h1>NO COUNTRY PLACEHOLDER</h1>}
-      <TableBody />
+      {countries.length ? 
+      <table>
+        <TableHeader />
+        <TableBody />
+      </table> : <h1>NO COUNTRY PLACEHOLDER</h1>}
     </div>
   )
 }

@@ -1,10 +1,10 @@
 import Layout from "@components/Layout"
 import { GetServerSideProps } from "next";
 import { ChangeEventHandler, useState } from "react";
-import { CountryData } from "types/CountryData";
+import { CountryDataTypes } from "types/CountryData";
 import CountriesTable from "@components/CountriesTable";
 
-export default function CountriesPage({countries} : {countries: CountryData[]}) {
+export default function CountriesPage({countries} : {countries: CountryDataTypes[]}) {
   let to: NodeJS.Timeout;
   const [filtered, setFiltered] = useState(""); 
 
@@ -18,10 +18,9 @@ export default function CountriesPage({countries} : {countries: CountryData[]}) 
   return (
     <Layout title="Country Search">
       {/* Note: There is a country called the Aland Island, with a Angstrom character (not a regular A), it has a char Code of 197 */}
-      {/* add the input and table here */}
       <label htmlFor="country">Country</label>
       <input type="search" id="country" onChange={countryChangeHandler} />
-      <CountriesTable countries={countries.filter((country: CountryData) => country.name.startsWith(filtered))}/>
+      <CountriesTable countries={countries.filter((country: CountryDataTypes) => country.name.toLowerCase().startsWith(filtered.toLowerCase()))}/>
     </Layout>
   )
 }

@@ -1,20 +1,23 @@
 import Link from 'next/link';
 import styles from '../styles/Header.module.css';
+import { ImHome, ImEarth } from 'react-icons/im';
+import { useRouter } from 'next/router';
 
-export default function Header() {
+export default function Header({children}: {children: any}) {
+  const router = useRouter();
   return (
-    <header className={styles.header}>
-      <div className={styles.logo}>
+    <div className={styles.navigate}>
+      {router.route === "/countries" && <nav>
         <Link href='/'>
-          <a>Home</a>
+          <a><ImHome/></a>
         </Link>
-      </div>
-
-      <nav>
+      </nav>}
+      <>{children}</>
+      {router.route === "/" && <nav>
         <Link href='/countries'>
-          <a>Search Countries</a>
+          <a><ImEarth/></a>
         </Link>
-      </nav>
-    </header>
+      </nav>}
+    </div>
   )
 }
