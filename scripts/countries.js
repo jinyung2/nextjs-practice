@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path')
 const fetch = require('node-fetch');
-const { resolve } = require('path');
 
 /**
  * This script brings in data from countries rest API and caches it for use with static generation.
