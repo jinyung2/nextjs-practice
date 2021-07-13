@@ -3,8 +3,8 @@ import { GetStaticPaths } from "next"
 import Link from 'next/link';
 import { CountryDataTypes } from "types/CountryData";
 
+export default function CountryPage({ country }: { country: string }) {
 
-export default function CountryPage({ country }: any) {
   return (
     <Layout title={`${country} Info`}>
       <h1>{country}</h1>
@@ -16,12 +16,8 @@ export default function CountryPage({ country }: any) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const countries = await (await fetch("https://restcountries.eu/rest/v2/all?fields=name;capital;region;population")).json();
-  // one country named Åland Islands, that starts with the Angstrom character... messes with my filter so changing into regular A
-  countries[1].name = 'Aland Islands';
-  const paths = countries.map((c: CountryDataTypes) => ({
-    params: { country: c.name }
-  }))
+  const countries = require('../../cache/countries').countries;
+  const paths = countries.map((country: CountryDataTypes) => ({ params: { country: country.name } }));
   return {
     paths,
     fallback: false

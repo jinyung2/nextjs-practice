@@ -1,5 +1,6 @@
 .autocomplete {
   width: 66%;
+  z-index: 10;
 }
 
 .autocomplete ul {
