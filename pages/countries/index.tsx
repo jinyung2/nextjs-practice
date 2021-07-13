@@ -4,12 +4,16 @@ import { CountryDataTypes } from "types/CountryData";
 import CountriesTable from "@components/CountriesTable";
 import styles from '@styles/Countries.module.css';
 
-export default function CountriesPage() {
+export default function CountriesPage({ countriesData } : {countriesData: CountryDataTypes[]}) {
   const [filtered, setFiltered] = useState<string>("");
   const [countries, setCountries] = useState<CountryDataTypes[]>([]);
   const [autoComp, setAutoComp] = useState<string[]>([]);
   const [active, setActive] = useState(false);
 
+  useEffect(() => {
+    setCountries(countriesData)
+  }, []);
+  
   useEffect(() => {
     (async () => {
       if (filtered === '') {
@@ -55,3 +59,12 @@ export default function CountriesPage() {
     </Layout>
   )
 }
+
+export const getStaticProps = async () => {
+  const countries = require('../../cache/countries').countries;
+  return {
+    props: {
+      countriesData: countries
+    }
+  }
+};
