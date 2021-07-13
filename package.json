@@ -10,11 +10,6 @@
     "prepare": "husky install",
     "cache-countries": "node scripts/countries.js"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run cache-countries && git add cache/countries.js"
-    }
-  },
   "dependencies": {
     "framer-motion": "^4.1.17",
     "husky": "^7.0.1",
