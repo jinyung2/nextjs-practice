@@ -8,7 +8,7 @@ export default async function handler(
   res: NextApiResponse<CountryDataTypes[]>
 ) {
   const results = req.query.q
-    ? countries.filter((country) =>
+    ? countries.filter((country: CountryDataTypes) =>
         country.name
           .toLowerCase()
           .startsWith((req.query.q as string).toLowerCase())

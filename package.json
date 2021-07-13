@@ -7,11 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cache": "node scripts/countries.js"
+    "cache-countries": "node scripts/countries.js"
   },
   "husky":{
     "hooks": {
-      "pre-commit": "npm run cache && git add cache/countries.js"
+      "pre-commit": "npm run cache-countries && git add cache/countries.js"
     }
   },
   "dependencies": {
