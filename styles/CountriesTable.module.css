@@ -1,3 +1,7 @@
+.table-container {
+  width: 100%;
+}
+
 .table-container table {
   padding: 0 20px 20px 20px;
   width: 80%;
@@ -10,9 +14,18 @@
   border-top: 1px solid black;
 }
 
+.table-container td {
+  cursor: pointer;
+}
+
 .table-container tr:nth-child(2n) {
   background-color: var(--color-main);
 }
+
+.table-container tbody tr:hover {
+  background-color: #9f9f9f;
+}
+
 
 @media only screen and (max-width: 600px){
   .table-container table {

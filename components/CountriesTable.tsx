@@ -1,8 +1,9 @@
 import { CountryDataTypes } from "types/CountryData";
 import styles from '@styles/CountriesTable.module.css';
 import NotFound from "./NotFound";
+import Link from 'next/link';
 
-export default function CountriesTable({countries}: {countries: CountryDataTypes[]}) {
+export default function CountriesTable({ countries }: { countries: CountryDataTypes[] }) {
 
   const TableHeader = () => {
     return (
@@ -19,26 +20,28 @@ export default function CountriesTable({countries}: {countries: CountryDataTypes
 
   const TableBody = () => {
     return (
-    <tbody>
-          {countries.map((country: CountryDataTypes) =>
-          <tr key={country.name}>
-            <td>{country.name}</td>
-            <td>{country.capital}</td>
-            <td>{country.region}</td>
-            <td>{country.population}</td>
-          </tr>
-          )}
-    </tbody>
+      <tbody>
+        {countries.map((country: CountryDataTypes) =>
+          <Link href={`/countries/${country.name}`}>
+            <tr key={country.name}>
+              <td>{country.name}</td>
+              <td>{country.capital}</td>
+              <td>{country.region}</td>
+              <td>{country.population}</td>
+            </tr>
+          </Link>
+        )}
+      </tbody>
     );
   }
-  
+
   return (
     <div className={styles['table-container']}>
-      {countries.length ? 
-      <table>
-        <TableHeader />
-        <TableBody />
-      </table> : <NotFound />}
+      {countries.length ?
+        <table>
+          <TableHeader />
+          <TableBody />
+        </table> : <NotFound />}
     </div>
   )
 }

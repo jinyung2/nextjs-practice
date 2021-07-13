@@ -1,35 +1,60 @@
 import Layout from "@components/Layout"
-import { GetServerSideProps } from "next";
-import { ChangeEventHandler, useState } from "react";
+import { GetStaticProps } from "next";
+import { ChangeEventHandler, useState, useEffect, SyntheticEvent } from "react";
 import { CountryDataTypes } from "types/CountryData";
 import CountriesTable from "@components/CountriesTable";
 import styles from '@styles/Countries.module.css';
 
-export default function CountriesPage({countries} : {countries: CountryDataTypes[]}) {
+export default function CountriesPage({ countries }: { countries: CountryDataTypes[] }) {
   let to: NodeJS.Timeout;
-  const [filtered, setFiltered] = useState(""); 
+  const [filtered, setFiltered] = useState<string>("");
+  const [autoComp, setAutoComp] = useState<string[]>(['']);
+
+  const countryFilterHandler = () => {
+    return countries.filter((country: CountryDataTypes) => country.name.toLowerCase().startsWith(filtered.toLowerCase()))
+  }
+
+  useEffect(() => {
+    const newAutoComp = countries
+      .filter((country: CountryDataTypes) => country.name.toLowerCase().startsWith(filtered.toLowerCase()) && filtered !== '')
+      .map((country: CountryDataTypes) => country.name);
+    setAutoComp(newAutoComp);
+  }, [filtered])
+
 
   const countryChangeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
-    if (to) clearTimeout(to);
-    to = setTimeout(() => {
-      setFiltered(e.target.value);
-    }, 500);
+    setFiltered(e.target.value);
+  }
+
+  const filterHandler = (e: string) => {
+    setFiltered(e);
+    // why does this setTimeout work??
+    setTimeout(() => { setAutoComp([]); }, 0);
   }
 
   return (
     <Layout title="Country Search">
       <label htmlFor="country">Country</label>
-      <input type="search" id="country" onChange={countryChangeHandler} autoComplete="off" placeholder="Search Country Name"/>
-      <CountriesTable countries={countries.filter((country: CountryDataTypes) => country.name.toLowerCase().startsWith(filtered.toLowerCase()))}/>
+      <input type="search" id="country" onChange={countryChangeHandler} value={filtered} autoComplete="off" placeholder="Search Country Name" />
+      <div className={styles.autocomplete}>
+        {autoComp.length !== 0 && <ul>
+          {autoComp.map((country: string) =>
+            <li key={country} onClick={() => filterHandler(country)}>
+              {country}
+            </li>)}
+        </ul>
+        }
+      </div>
+      <CountriesTable countries={countryFilterHandler()} />
     </Layout>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) =>  {
+export const getStaticProps: GetStaticProps = async (context) => {
   const countries = await (await fetch("https://restcountries.eu/rest/v2/all?fields=name;capital;region;population")).json();
   // one country named Åland Islands, that starts with the Angstrom character... messes with my filter so changing into regular A
   countries[1].name = 'Aland Islands';
   return {
-    props: {countries}
+    props: { countries }
   }
 }

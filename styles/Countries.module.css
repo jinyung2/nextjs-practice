@@ -1,0 +1,30 @@
+.autocomplete {
+  width: 66%;
+}
+
+.autocomplete ul {
+  top: 66px;
+  width: 60%;
+  position: absolute;
+  list-style: none;
+  padding: 0;
+  border: 1px solid black;
+  box-shadow: 3px 3px black;
+  max-height: 30vh;
+  overflow: auto;
+}
+
+.autocomplete li {
+  padding: 10px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.autocomplete li:hover {
+  background-color: #afafaf;
+  cursor: pointer;
+}
+
+.autocomplete li:not(:last-child) {
+  border-bottom: 1px dotted grey;
+}
