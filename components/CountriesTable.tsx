@@ -22,8 +22,8 @@ export default function CountriesTable({ countries }: { countries: CountryDataTy
     return (
       <tbody>
         {countries.map((country: CountryDataTypes) =>
-          <Link href={`/countries/${country.name}`}>
-            <tr key={country.name}>
+          <Link key={country.name} href={`/countries/${country.name}`} passHref>
+            <tr>
               <td>{country.name}</td>
               <td>{country.capital}</td>
               <td>{country.region}</td>

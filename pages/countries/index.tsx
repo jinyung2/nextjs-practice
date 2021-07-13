@@ -15,7 +15,7 @@ export default function CountriesPage({ countries }: { countries: CountryDataTyp
       .filter((country: CountryDataTypes) => country.name.toLowerCase().startsWith(filtered.toLowerCase()) && filtered !== '')
       .map((country: CountryDataTypes) => country.name);
     setAutoComp(newAutoComp);
-  }, [filtered])
+  }, [filtered, countries])
 
   const countryFilterHandler = () => {
     return countries.filter((country: CountryDataTypes) => country.name.toLowerCase().startsWith(filtered.toLowerCase()))
