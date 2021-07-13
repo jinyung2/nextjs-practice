@@ -9,7 +9,7 @@
     "lint": "next lint",
     "cache-countries": "node scripts/countries.js"
   },
-  "husky":{
+  "husky": {
     "hooks": {
       "pre-commit": "npm run cache-countries && git add cache/countries.js"
     }
