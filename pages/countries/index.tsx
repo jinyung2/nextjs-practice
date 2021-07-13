@@ -6,21 +6,20 @@ import CountriesTable from "@components/CountriesTable";
 import styles from '@styles/Countries.module.css';
 
 export default function CountriesPage({ countries }: { countries: CountryDataTypes[] }) {
-  let to: NodeJS.Timeout;
   const [filtered, setFiltered] = useState<string>("");
   const [autoComp, setAutoComp] = useState<string[]>(['']);
 
-  const countryFilterHandler = () => {
-    return countries.filter((country: CountryDataTypes) => country.name.toLowerCase().startsWith(filtered.toLowerCase()))
-  }
-
   useEffect(() => {
+    console.log('filtered useeffect fired!');
     const newAutoComp = countries
       .filter((country: CountryDataTypes) => country.name.toLowerCase().startsWith(filtered.toLowerCase()) && filtered !== '')
       .map((country: CountryDataTypes) => country.name);
     setAutoComp(newAutoComp);
   }, [filtered])
 
+  const countryFilterHandler = () => {
+    return countries.filter((country: CountryDataTypes) => country.name.toLowerCase().startsWith(filtered.toLowerCase()))
+  }
 
   const countryChangeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
     setFiltered(e.target.value);
@@ -29,8 +28,9 @@ export default function CountriesPage({ countries }: { countries: CountryDataTyp
   const filterHandler = (e: string) => {
     setFiltered(e);
     // why does this setTimeout work??
-    setTimeout(() => { setAutoComp([]); }, 0);
+    setTimeout(() => { setAutoComp([]) }, 0);
   }
+
 
   return (
     <Layout title="Country Search">

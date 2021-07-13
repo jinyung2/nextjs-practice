@@ -1,12 +1,17 @@
+import Layout from "@components/Layout";
 import { GetStaticPaths } from "next"
+import Link from 'next/link';
 import { CountryDataTypes } from "types/CountryData";
 
 
-export default function CountryPage({country} : any) {
+export default function CountryPage({ country }: any) {
   return (
-    <div>
-      Country Page {country}
-    </div>
+    <Layout title={`${country} Info`}>
+      <h1>{country}</h1>
+      <div>
+        <Link href="/countries">Go Back</Link>
+      </div>
+    </Layout>
   )
 }
 
@@ -15,7 +20,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // one country named Åland Islands, that starts with the Angstrom character... messes with my filter so changing into regular A
   countries[1].name = 'Aland Islands';
   const paths = countries.map((c: CountryDataTypes) => ({
-    params: {country: c.name}
+    params: { country: c.name }
   }))
   return {
     paths,
@@ -23,7 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async ({params}: any) => {
+export const getStaticProps = async ({ params }: any) => {
   return {
     props: {
       country: params.country
